@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Question Game</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #09D6E3;
+        background-image: 
+            repeating-linear-gradient(
+                45deg,
+                #09D6E3 0,
+                #09D6E3 20px,
+                #07b0c0 20px,
+                #07b0c0 40px
+            );
+    }
+
+    .title {
+        width: 400px;
+        padding: 40px 20px;
+        background-color: white;
+        border-radius: 15px;
+        font-size: 36px;
+        font-weight: bold;
+        color: darkblue;
+        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        margin-bottom: 30px;
+    }
+
+    button {
+        padding: 15px 30px;
+        font-size: 20px;
+        cursor: pointer;
+        border: none;
+        border-radius: 10px;
+        background-color: darkblue;
+        color: white;
+        margin-bottom: 30px;
+    }
+
+    button:hover {
+        background-color: #005f9e;
+    }
+
+    #question {
+        width: 500px;
+        min-height: 100px;
+        background-color: white;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        color: darkblue;
+        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+</style>
+</head>
+<body>
+    <div class="title">Question Game</div>
+    <button onclick="showQuestion()">Give me a question</button>
+    <div id="question"></div>
+
+<script>
+    function showQuestion() {
+        fetch("/question")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("question").innerText = data.question;
+            });
+    }
+</script>
+</body>
+</html>
+
