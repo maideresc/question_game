@@ -32,17 +32,15 @@ questions = [
     "Which famous scientist formulated the laws of motion?"
 ]
 
-# Ruta principal que carga la página de inicio (index.html)
+# Main route that loads the homepage (index.html)
 @app.route("/")
 def index():
     return render_template("index.html")
 
-# Ruta que devuelve una pregunta al azar
+# Route that returns a random question in JSON format
 @app.route("/question")
 def get_question():
     return jsonify({"question": random.choice(questions)})
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
